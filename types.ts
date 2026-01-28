@@ -1,5 +1,4 @@
 
-
 export interface UserProfile {
     uid?: string;
     name?: string;
@@ -25,13 +24,9 @@ export interface UserProfile {
     cart?: CartItem[];
     lat?: number;
     lng?: number;
-    /** Fix: Added missing birth-related fields for UserProfile */
-    dob?: string;
-    timeOfBirth?: string;
-    placeOfBirth?: string;
 }
 
-/** Fix: Added missing UserInput interface */
+// Fix: Added UserInput interface
 export interface UserInput {
     name?: string;
     dob?: string;
@@ -50,14 +45,11 @@ export interface UserInput {
     girlDob?: string;
     name1?: string;
     name2?: string;
-    voice?: 'female' | 'male';
     startLocation?: string;
     endLocation?: string;
     storyPremise?: string;
     resolution?: '720p' | '1080p';
     aspectRatio?: '16:9' | '9:16';
-    category?: string;
-    autoRenew?: boolean;
     characters?: string;
     setting?: string;
     visualStyle?: string;
@@ -65,30 +57,31 @@ export interface UserInput {
     addVoiceOver?: boolean;
     addCaptions?: boolean;
     desiredDuration?: string;
+    voice?: 'female' | 'male';
+    category?: string;
 }
 
-/** Fix: Added missing Reading interface */
+// Fix: Added Reading interface
 export interface Reading {
     past: string;
     present: string;
     future: string;
     result: string;
     imageUrl?: string;
-    videoUrl?: string;
 }
 
-/** Fix: Added missing SavedReading interface */
+// Fix: Added Place interface
+export interface Place {
+    name: string;
+    address: string;
+}
+
+// Fix: Added SavedReading interface
 export interface SavedReading {
     id: string;
     date: string;
     divinationType: DivinationType;
     reading: Reading;
-}
-
-/** Fix: Added missing Place interface */
-export interface Place {
-    name: string;
-    address: string;
 }
 
 export interface VerificationRequest {
@@ -103,7 +96,6 @@ export interface VerificationRequest {
     type: 'SUBSCRIPTION' | 'PRODUCT' | 'SUPPORT_CHAT';
     transactionId?: string;
     orderId?: string;
-    autoRenew?: boolean;
 }
 
 export interface SupportTicket {
@@ -131,6 +123,7 @@ export interface SocialMediaPost {
   createdAt: string;
 }
 
+// Fix: Added ProductComment interface
 export interface ProductComment {
     id: string;
     userName: string;
@@ -139,6 +132,7 @@ export interface ProductComment {
     createdAt: any;
 }
 
+// Fix: Added ChatMessage interface
 export interface ChatMessage {
     id: string;
     senderUid: string;
@@ -152,6 +146,7 @@ export interface ChatMessage {
     createdAt: any;
 }
 
+// Fix: Added CustomerDetails interface
 export interface CustomerDetails {
     name: string;
     phone: string;
@@ -165,7 +160,6 @@ export interface CustomerDetails {
     country?: string;
 }
 
-/** Fix: Expanded DivinationType with all missing members referenced in the application */
 export enum DivinationType {
     PUJAN_SAMAGRI = 'पूजन सामग्री (Pujan Samagri)',
     TANTRA_MANTRA_YANTRA_EBOOK = 'ई-बुक्स (E-Books Library)',
@@ -175,54 +169,56 @@ export enum DivinationType {
     LADIES_GENTS_ACCESSORIES = 'पर्स और बेल्ट (Bags & Belts)',
     COMPUTER_COURSE = 'कंप्यूटर कोर्स (Computer Course)',
     MOBILE_REPAIRING_COURSE = 'मोबाइल रिपेयरिंग (Mobile Repairing)',
+    ADMIN_PANEL = 'एडमिन पैनल (Admin Panel)',
     SKILL_LEARNING = 'स्किल सीखें (Skill Learning)',
     BUSINESS_MOTIVATION = 'बिज़नेस स्टोरी (Business Stories)',
     AUDIO_STORY = 'ऑडियो कहानी (Audio Stories)',
+    // Fix: Expanded DivinationType with missing members
     PALMISTRY = 'हस्तरेखा (Palmistry)',
-    AI_FACE_READING = 'चेहरा पढ़ना (Face Reading)',
+    AI_FACE_READING = 'चेहरा पढ़ना (AI Face Reading)',
     DAILY_FORTUNE_CARD = 'दैनिक भाग्य कार्ड (Daily Fortune Card)',
     ASTROLOGY = 'ज्योतिष (Astrology)',
-    NUMEROLOGY = 'अंकज्योतिष (Numerology)',
+    NUMEROLOGY = 'अंक ज्योतिष (Numerology)',
     BUSINESS_ASTROLOGY = 'व्यापार ज्योतिष (Business Astrology)',
     CODE_INSPECTOR = 'कोड इंस्पेक्टर (Code Inspector)',
-    ROUTE_PLANNER = 'मार्ग नियोजक (Route Planner)',
+    ROUTE_PLANNER = 'रूट प्लानर (Route Planner)',
     YOGA_GUIDE_HINDI = 'योग गाइड (Yoga Guide)',
     STORY_TO_VIDEO = 'कहानी से वीडियो (Story to Video)',
     FUTURE_STORY = 'भविष्य की कहानी (Future Story)',
     IMAGE_TO_VIDEO = 'चित्र से वीडियो (Image to Video)',
     JANAM_KUNDLI = 'जन्म कुंडली (Janam Kundli)',
-    AI_TIME_MACHINE = 'समय यात्रा (AI Time Machine)',
+    AI_TIME_MACHINE = 'समय मशीन (AI Time Machine)',
     OBJECT_COUNTER = 'वस्तु गणक (Object Counter)',
     PRODUCT_SCANNER = 'उत्पाद स्कैनर (Product Scanner)',
-    MARRIAGE_COMPATIBILITY = 'विवाह अनुकूलता (Marriage Compatibility)',
-    LOVE_COMPATIBILITY = 'प्रेम अनुकूलता (Love Compatibility)',
-    TAROT = 'टैरो रीडिंग (Tarot Reading)',
+    MARRIAGE_COMPATIBILITY = 'विवाह मिलान (Marriage Compatibility)',
+    LOVE_COMPATIBILITY = 'प्रेम मिलान (Love Compatibility)',
+    TAROT = 'टैरो (Tarot)',
     PRASHNA_CHAKRA = 'प्रश्न चक्र (Prashna Chakra)',
-    DREAM = 'सपना विश्लेषण (Dream Analysis)',
+    DREAM = 'स्वप्न फल (Dream Interpretation)',
     AI_FUTURE_GENERATOR = 'भविष्य जनरेटर (AI Future Generator)',
     HOROSCOPE = 'राशिफल (Horoscope)',
     DAILY_HOROSCOPE = 'दैनिक राशिफल (Daily Horoscope)',
     ZODIAC = 'राशि (Zodiac)',
-    TEXT_TO_IMAGE = 'लेख से चित्र (Text to Image)',
-    PILGRIMAGE = 'तीर्थयात्रा (Pilgrimage)',
     TRAVEL = 'यात्रा (Travel)',
     TRAIN_JOURNEY = 'ट्रेन यात्रा (Train Journey)',
-    MOLE = 'तिल ज्योतिष (Mole Astrology)',
+    MOLE = 'तिल विचार (Mole)',
     LOVE_RELATIONSHIP = 'प्रेम संबंध (Love Relationship)',
     SEASONAL_FOOD = 'मौसमी भोजन (Seasonal Food)',
-    ANG_SPHURAN = 'अंग स्फुरण (Body Twitching)',
-    SNEEZING = 'छींक (Sneezing)',
+    ANG_SPHURAN = 'अंग स्फुरण (Ang Sphuran)',
+    SNEEZING = 'छींक विचार (Sneezing)',
     FOOD_COMBINATION = 'भोजन संयोजन (Food Combination)',
     RELIGIOUS_RITUALS = 'धार्मिक अनुष्ठान (Religious Rituals)',
     PRASHNA_PARIKSHA = 'प्रश्न परीक्षा (Prashna Pariksha)',
-    FAMOUS_PLACE_TRAVEL = 'प्रसिद्ध स्थान (Famous Place Travel)',
+    FAMOUS_PLACE_TRAVEL = 'प्रसिद्ध स्थान यात्रा (Famous Place Travel)',
     ENGLISH_GURU = 'अंग्रेजी गुरु (English Guru)',
-    SCAN_TRANSLATE = 'अनुवाद (Scan & Translate)',
+    SCAN_TRANSLATE = 'स्कैन अनुवाद (Scan Translate)',
     VASTU_SHASTRA = 'वास्तु शास्त्र (Vastu Shastra)',
+    PILGRIMAGE = 'तीर्थयात्रा (Pilgrimage)',
     TIME_MANAGEMENT = 'समय प्रबंधन (Time Management)',
     LOCAL_EXPERTS = 'स्थानीय विशेषज्ञ (Local Experts)',
     HTML_GENERATOR = 'HTML जनरेटर (HTML Generator)',
     LIVE_ASTROLOGER = 'लाइव ज्योतिषी (Live Astrologer)',
+    TEXT_TO_IMAGE = 'टेक्स्ट से इमेज (Text to Image)'
 }
 
 export type ProductCategory = 
